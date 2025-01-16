@@ -1,4 +1,4 @@
-package orders;
+package mermaidgenerator;
 
 import com.github.javaparser.JavaParser;
 import com.github.javaparser.ParserConfiguration;
