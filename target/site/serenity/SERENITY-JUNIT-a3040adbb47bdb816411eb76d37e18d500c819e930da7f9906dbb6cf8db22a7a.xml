@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><testsuite errors="0" failures="0" name="orders.PlaceOrder" skipped="0" tests="1" time="9.85" timestamp="2025-01-08 09:10:12"><testcase classname="orders.PlaceOrder" name="Should remove product from products screen"/></testsuite>

@@ -1,0 +1,98 @@
+classDiagram
+  class CheckoutPage {
+    WebElementFacade checkoutInfo_FirstNameField
+    WebElementFacade checkoutInfo_LastNameField
+    WebElementFacade checkoutInfo_PostalField
+    WebElementFacade checkoutInfo_Continue
+    List<WebElementFacade> checkoutOverView_cartItems
+    WebElementFacade checkoutOverView_Finish
+    WebElementFacade checkoutComplete_OrderConfirmMsg
+    String itemRowXpath
+    void enterFirstName(String firstName)
+    void enterLastName(String lastName)
+    void enterPostalCode(String postalCode)
+    void clickToContinue()
+    int totalItemCount()
+    List<String> getProductsAddedToCart()
+    void clickFinish()
+    String getOrderConfirmationMsg()
+  }
+  CheckoutPage <|-- PageObject
+  class CheckoutPageSteps {
+    void enterCheckoutInfo(String firstName, String lastName, String postalCode)
+    void clickContinueButton()
+    void verifyProductsAddedToCart(List<String> productList)
+    void clickFinishButton()
+    void verifyOrderConfirmationMessage(String ExpConfirmMsg)
+  }
+  CheckoutPageSteps <|-- BaseSteps
+  class ProductsPage {
+    WebElementFacade menuBtn
+    WebElementFacade shoppingCartContainer
+    WebElementFacade shoppingCartProductCount
+    void clickMenuBtn()
+    WebElementFacade getAddToCartBtn(String productName)
+    void addProductToCart(String productName)
+    WebElementFacade getRemoveFromCartBtn(String productName)
+    void verifyRemoveBtnIsDisplayed(String productName)
+    void openShoppingCartContainer()
+    int getProductCountDisplayed()
+  }
+  ProductsPage <|-- PageObject
+  class BaseSteps {
+    ProductsPage productsPage
+    LoginPage loginPage
+    LogoutPage logoutPage
+    CartPage cartPage
+    CheckoutPage checkoutPage
+  }
+  class CartPageSteps {
+    void clickContinueCheckoutButton()
+  }
+  CartPageSteps <|-- BaseSteps
+  class LoginPage {
+    WebElementFacade usernameField
+    WebElementFacade passwordField
+    WebElementFacade loginButton
+    void openApp()
+    void enterUsername(String username)
+    void enterPassword(String password)
+    void clickLoginButton()
+  }
+  LoginPage <|-- PageObject
+  class LoginSteps {
+    void loginToTheApplicationWithValidCredentials()
+  }
+  LoginSteps <|-- BaseSteps
+  class LogoutPage {
+    WebElementFacade logoutLink
+    void clickLogOutLink()
+  }
+  LogoutPage <|-- PageObject
+  class CartPage {
+    WebElementFacade checkoutBtn
+    void clickCheckout()
+  }
+  CartPage <|-- PageObject
+  class LogoutSteps {
+    void LogoutFromApplication()
+  }
+  LogoutSteps <|-- BaseSteps
+  class PlaceOrder {
+    List<String> prodList
+    void placeOrderForGivenProduct()
+  }
+  PlaceOrder <|-- BaseTest
+  class ProductsPageSteps {
+    void addGivenProductsToCart(String productName)
+    void navigateToCartPage()
+  }
+  ProductsPageSteps <|-- BaseSteps
+  class BaseTest {
+    WebDriver browser
+    LoginSteps loginSteps
+    LogoutSteps logoutSteps
+    ProductsPageSteps productsPageSteps
+    CartPageSteps cartPageSteps
+    CheckoutPageSteps checkoutPageSteps
+  }
